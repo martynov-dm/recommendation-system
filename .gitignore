@@ -1,0 +1,47 @@
+# Virtual environment
+venv/
+.mypy_cache
+# Python compiled files
+data
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+models
+catboost_info
+# Distribution and packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Local development files
+.env
+.env.*
+.env.local
+.env.*.local
+
+# Log files
+logs/
+*.log
+
+# Database files
+*.db
+*.sqlite
+
+# Other
+.DS_Store
+Thumbs.db
+
+ml_service.code-workspace
+rabbitmq
+.DS_Store
+.pytest_cache
+venv
+.venv
