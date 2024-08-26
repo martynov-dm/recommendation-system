@@ -6,6 +6,16 @@ import pandas as pd
 from catboost import CatBoostClassifier
 from pydantic import BaseModel
 import hashlib
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Get database connection string from environment variable
+DB_CONNECTION_STRING = os.getenv("DB_CONNECTION_STRING")
+if not DB_CONNECTION_STRING:
+    raise ValueError(
+        "Database connection string not found in environment variables")
 
 # Constants for A/B testing
 SALT = "recommender_salt"  # Salt for hashing
@@ -47,14 +57,12 @@ model_control, model_test = load_models()
 # Load user and post data
 users = pd.read_sql(
     """SELECT * FROM public.martynov_features_lesson_22_users """,
-    con="postgresql://robot-startml-ro:pheiph0hahj1Vaif@"
-        "postgres.lab.karpov.courses:6432/startml"
+    con=DB_CONNECTION_STRING
 )
 
 posts = pd.read_sql(
     """SELECT * FROM public.martynov_post_features_lesson_22_posts """,
-    con="postgresql://robot-startml-ro:pheiph0hahj1Vaif@"
-        "postgres.lab.karpov.courses:6432/startml"
+    con=DB_CONNECTION_STRING
 )
 
 app = FastAPI()
